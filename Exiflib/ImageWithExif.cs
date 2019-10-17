@@ -1,4 +1,8 @@
-﻿using System;
+﻿using MetadataExtractor;
+using MetadataExtractor.Formats.Exif;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ExifLib
@@ -139,10 +143,21 @@ namespace ExifLib
         public ImageWithExif(String FileName)
         {
             this.FileName = FileName;
-            using (var reader = new ExifReader(FileName))
-            {
-                setProperties(reader);
-            }
+
+            IEnumerable<Directory> directories = ImageMetadataReader.ReadMetadata(this.FileName);
+
+            //using (var reader = new ExifReader(FileName))
+            //{
+            //    setProperties(reader);
+            //}
+            setProperties2(directories);
+        }
+
+        private void setProperties2(IEnumerable<Directory> directories)
+        {
+            var subIfdDirectory = directories.OfType<ExifSubIfdDirectory>().FirstOrDefault();
+
+            _aperture = (double) subIfdDirectory?.GetDouble(ExifDirectoryBase.TagAperture);
         }
 
         private void setProperties(ExifReader reader)
