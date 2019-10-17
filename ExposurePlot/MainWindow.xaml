@@ -1,0 +1,33 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="ShutterVerse.MainWindow"
+        Title="ShutterVerse">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="1" x:Name="directoryLabel" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+            <Button Grid.Column="0" Content="Choose a folder" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" />
+        </Grid>
+        <Grid Grid.Row="1">
+            
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.Column="0" x:Name="dataGrid1" AutoGenerateColumns="True" SelectedItem="{Binding Path=selectedImage, Mode=TwoWay}"
+                          SelectionChanged="DataGrid1_SelectionChanged">
+                </DataGrid>
+                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Name="ImagePreview" Grid.Column="2"/>
+        </Grid>
+    </Grid>
+</Window>
