@@ -7,8 +7,8 @@
     <ProjectGuid>{EC574E17-BAC8-4EC6-B745-831826E13DD0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ExposurePlot</RootNamespace>
-    <AssemblyName>ExposurePlot</AssemblyName>
+    <RootNamespace>ShutterVerse</RootNamespace>
+    <AssemblyName>ShutterVerse</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
