@@ -5,8 +5,13 @@ using System.Windows.Media.Imaging;
 using System.IO;
 
 using System.Windows.Forms;
+using System.Linq;
 
 using ExifLib;
+
+using LiveCharts.Wpf;
+using LiveCharts;
+
 
 namespace ShutterVerse
 {
@@ -18,9 +23,14 @@ namespace ShutterVerse
         public MainWindow()
         {
             InitializeComponent();
+            SeriesCollection = new SeriesCollection();
         }
 
         public ImageWithExif selectedImage { get; set; }
+
+        public SeriesCollection SeriesCollection { get; set; }
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -52,6 +62,25 @@ namespace ShutterVerse
 
                     }
                 }
+
+
+                var labels = imageList.GroupBy(l => l.FocalLength)
+                                  .Select(g => g.Key).OrderBy(g=>g);
+
+
+                var values = imageList.GroupBy(l => l.FocalLengthDouble)
+                                  .Select(g => g.Select(l => l.FocalLengthDouble).Count());
+
+                SeriesCollection.Add(new ColumnSeries
+                {
+                    
+                 Values = new ChartValues<int> (values)
+    
+                });
+
+                Labels = labels.ToArray();
+                Formatter = value => value.ToString("N");
+                DataContext = this;
 
                 dataGrid1.ItemsSource = imageList;
             }
