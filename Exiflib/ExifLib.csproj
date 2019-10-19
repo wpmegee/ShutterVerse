@@ -122,10 +122,6 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ExifReader.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ExifTags.cs" />
     <Compile Include="ImageWithExif.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -156,12 +152,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Lib\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -31,14 +31,14 @@ namespace ShutterVerse
 
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-               path= directoryLabel.Text = dialog.SelectedPath;
+               path = dialog.SelectedPath;
             }
 
             List<ImageWithExif> imageList=new List<ImageWithExif>();
 
             if (path != String.Empty)
             {
-                directoryLabel.Text = path;
+                directoryLabel.Content = path;
 
                 foreach (var file in Directory.EnumerateFiles(path, "*.jpg", SearchOption.AllDirectories))
                 {
