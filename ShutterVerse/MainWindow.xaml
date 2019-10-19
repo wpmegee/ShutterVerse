@@ -24,7 +24,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <DataGrid Grid.Column="0" x:Name="dataGrid1" AutoGenerateColumns="True" SelectedItem="{Binding Path=selectedImage, Mode=TwoWay}"
-                          SelectionChanged="DataGrid1_SelectionChanged">
+                          SelectionChanged="DataGrid1_SelectionChanged" EnableColumnVirtualization="True" EnableRowVirtualization="True">
                 </DataGrid>
                 <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
                 <Image HorizontalAlignment="Left" VerticalAlignment="Top" Name="ImagePreview" Grid.Column="2"/>

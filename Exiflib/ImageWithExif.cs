@@ -11,35 +11,12 @@ namespace ExifLib
     {
         public string FileName { get; set; }
 
-        private double _aperture;
+        //private double _aperture;
 
-        public String Aperture
-        {
-            get { return "F/" + _aperture.ToString(); }
+        public String Aperture { get; set; }
 
-        }
-        private double _shutterSpeed;
+        public string ShutterSpeed { get; set; }
 
-        public string ShutterSpeed
-        {
-            get
-            {
-                var sb = new StringBuilder();
-                if (_shutterSpeed < 1)
-                {
-                    sb.Append("1/");
-                    sb.Append(1 / _shutterSpeed).ToString();
-                    sb.Append("s");
-                    return sb.ToString();
-                }
-                else
-                {
-                    return _shutterSpeed.ToString() + "s";
-                }
-
-                
-            }
-        }
         private double _focalLength;
 
         public double FocalLength
@@ -157,27 +134,33 @@ namespace ExifLib
         {
             var subIfdDirectory = directories.OfType<ExifSubIfdDirectory>().FirstOrDefault();
 
-            _aperture = (double) subIfdDirectory?.GetDouble(ExifDirectoryBase.TagAperture);
+            if (subIfdDirectory != null)
+            {
+                Aperture = subIfdDirectory.GetDescription(ExifDirectoryBase.TagAperture);
+                ShutterSpeed = subIfdDirectory.GetDescription(ExifDirectoryBase.TagExposureTime);
+                //ExifDirectoryBase.Tag
+            }
+
         }
 
         private void setProperties(ExifReader reader)
         {
             //try
             //{
-                var goodTag = reader.GetTagValue(ExifTags.FNumber, out _aperture);
+                //var goodTag = reader.GetTagValue(ExifTags.FNumber, out _aperture);
 
-                goodTag = reader.GetTagValue(ExifTags.ExposureTime, out _shutterSpeed);
+                //goodTag = reader.GetTagValue(ExifTags.ExposureTime, out _shutterSpeed);
 
-                goodTag = reader.GetTagValue(ExifTags.FocalLength, out _focalLength);
-                goodTag = reader.GetTagValue(ExifTags.ISOSpeedRatings, out _iso);
+                //goodTag = reader.GetTagValue(ExifTags.FocalLength, out _focalLength);
+                //goodTag = reader.GetTagValue(ExifTags.ISOSpeedRatings, out _iso);
 
-                goodTag = reader.GetTagValue(ExifTags.ExposureProgram, out _ExposureProgram);
-                goodTag = reader.GetTagValue(ExifTags.Make, out _cameraMake);
-                goodTag = reader.GetTagValue(ExifTags.Model, out _cameraModel);
-                goodTag = reader.GetTagValue(ExifTags.DateTime, out _DateTaken);
-                goodTag = reader.GetTagValue(ExifTags.LensModel, out _lensModel);
-                goodTag = reader.GetTagValue(ExifTags.LensMake, out _lensMake);
-                goodTag = reader.GetTagValue(ExifTags.MeteringMode, out _meteringMode);
+                //goodTag = reader.GetTagValue(ExifTags.ExposureProgram, out _ExposureProgram);
+                //goodTag = reader.GetTagValue(ExifTags.Make, out _cameraMake);
+                //goodTag = reader.GetTagValue(ExifTags.Model, out _cameraModel);
+                //goodTag = reader.GetTagValue(ExifTags.DateTime, out _DateTaken);
+                //goodTag = reader.GetTagValue(ExifTags.LensModel, out _lensModel);
+                //goodTag = reader.GetTagValue(ExifTags.LensMake, out _lensMake);
+                //goodTag = reader.GetTagValue(ExifTags.MeteringMode, out _meteringMode);
             //}
             //catch (Exception ex)
             //{
