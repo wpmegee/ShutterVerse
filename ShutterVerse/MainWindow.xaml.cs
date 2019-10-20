@@ -9,10 +9,6 @@ using System.Linq;
 
 using ExifLib;
 
-using LiveCharts.Wpf;
-using LiveCharts;
-
-
 namespace ShutterVerse
 {
     /// <summary>
@@ -23,28 +19,23 @@ namespace ShutterVerse
         public MainWindow()
         {
             InitializeComponent();
-            SeriesCollection = new SeriesCollection();
         }
 
         public ImageWithExif selectedImage { get; set; }
-
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var dialog = new FolderBrowserDialog();
             DialogResult result = dialog.ShowDialog();
 
-            String path=String.Empty;
+            String path = String.Empty;
 
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-               path = dialog.SelectedPath;
+                path = dialog.SelectedPath;
             }
 
-            List<ImageWithExif> imageList=new List<ImageWithExif>();
+            List<ImageWithExif> imageList = new List<ImageWithExif>();
 
             if (path != String.Empty)
             {
@@ -57,30 +48,19 @@ namespace ShutterVerse
                         ImageWithExif image = new ImageWithExif(file);
 
                         imageList.Add(image);
-                    } catch
+                    }
+                    catch
                     {
 
                     }
                 }
 
+                FocalLengthBarChart.FocalLengthLabels = imageList.GroupBy(l => l.FocalLength)
+                                  .Select(g => g.Key).OrderBy(g => g);
 
-                var labels = imageList.GroupBy(l => l.FocalLength)
-                                  .Select(g => g.Key).OrderBy(g=>g);
-
-
-                var values = imageList.GroupBy(l => l.FocalLengthDouble)
+                FocalLengthBarChart.FocalLengthValues = imageList.GroupBy(l => l.FocalLengthDouble)
                                   .Select(g => g.Select(l => l.FocalLengthDouble).Count());
 
-                SeriesCollection.Add(new ColumnSeries
-                {
-                    
-                 Values = new ChartValues<int> (values)
-    
-                });
-
-                Labels = labels.ToArray();
-                Formatter = value => value.ToString("N");
-                DataContext = this;
 
                 dataGrid1.ItemsSource = imageList;
             }
