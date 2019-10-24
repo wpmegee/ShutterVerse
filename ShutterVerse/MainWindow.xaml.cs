@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Linq;
 
 using ExifLib;
+using ImageList = ExifLib.ImageList;
 
 namespace ShutterVerse
 {
@@ -26,6 +27,7 @@ namespace ShutterVerse
         public ImageWithExif selectedImage { get; set; }
         public bool DataLoaded { get; set; }
         public bool NotLoaded { get => !DataLoaded; set => DataLoaded = !value; }
+        public ImageList list { get; set; }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -39,34 +41,16 @@ namespace ShutterVerse
                 path = dialog.SelectedPath;
             }
 
-            List<ImageWithExif> imageList = new List<ImageWithExif>();
-
             if (path != String.Empty)
             {
                 directoryLabel.Content = path;
+                list = new ImageList(path);
+                list.Load();
 
-                foreach (var file in Directory.EnumerateFiles(path, "*.jpg", SearchOption.AllDirectories))
-                {
-                    try
-                    {
-                        ImageWithExif image = new ImageWithExif(file);
+                FocalLengthBarChart.FocalLengthLabels = list.FocalLengths;
+                FocalLengthBarChart.FocalLengthValues = list.FocalLengthCounts;
 
-                        imageList.Add(image);
-                    }
-                    catch
-                    {
-
-                    }
-                }
-
-                FocalLengthBarChart.FocalLengthLabels = imageList.GroupBy(l => l.FocalLength)
-                                  .Select(g => g.Key).OrderBy(g => g);
-
-                FocalLengthBarChart.FocalLengthValues = imageList.GroupBy(l => l.FocalLengthDouble)
-                                  .Select(g => g.Select(l => l.FocalLengthDouble).Count());
-
-
-                dataGrid1.ItemsSource = imageList;
+                dataGrid1.ItemsSource = list.list;
                 DataLoaded = true;
             }
         }
