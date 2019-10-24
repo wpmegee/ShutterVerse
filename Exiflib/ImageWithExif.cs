@@ -67,7 +67,6 @@ namespace ExifLib
                 ExposureProgram = subIfdDirectory.GetDescription(ExifDirectoryBase.TagExposureProgram);
                 MeteringMode = subIfdDirectory.GetDescription(ExifDirectoryBase.TagMeteringMode);
                 DateTaken = subIfdDirectory.GetDescription(ExifDirectoryBase.TagDateTimeDigitized);
-
             }
 
         }

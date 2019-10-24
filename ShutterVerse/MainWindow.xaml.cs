@@ -57,8 +57,14 @@ namespace ShutterVerse
 
         private void DataGrid1_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            var image = dataGrid1.SelectedItem as ImageWithExif;
-            ImagePreview.Source = new BitmapImage(new Uri(image.FileName));
+            if (dataGrid1.SelectedItem is ImageWithExif image)
+            {
+                // only preview the image for jpegs, for now.
+                if (image.FileName.Contains("jpg"))
+                {
+                    ImagePreview.Source = new BitmapImage(new Uri(image.FileName));
+                }
+            }
         }
     }
 }
