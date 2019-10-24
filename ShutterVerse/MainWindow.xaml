@@ -3,7 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="ShutterVerse.MainWindow"
         xmlns:uc="clr-namespace:ShutterVerse.Controls"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         Title="ShutterVerse">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -25,12 +32,20 @@
                     <ColumnDefinition Width="5" />
                     <ColumnDefinition Width=".3*" />
                 </Grid.ColumnDefinitions>
-                <DataGrid Grid.Column="0" x:Name="dataGrid1" AutoGenerateColumns="True" SelectedItem="{Binding Path=selectedImage, Mode=TwoWay}"
-                          SelectionChanged="DataGrid1_SelectionChanged" EnableColumnVirtualization="True" EnableRowVirtualization="True">
+            <DataGrid Grid.Column="0" x:Name="dataGrid1" AutoGenerateColumns="True" SelectedItem="{Binding Path=selectedImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          EnableColumnVirtualization="True" EnableRowVirtualization="True" SelectionChanged="DataGrid1_SelectionChanged">
                 </DataGrid>
                 <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
-                <Image HorizontalAlignment="Left" VerticalAlignment="Top" Name="ImagePreview" Grid.Column="2"/>
+            <Image HorizontalAlignment="Left" VerticalAlignment="Top" Name="ImagePreview" Grid.Column="2"/>
         </Grid>
-        <uc:FocalLengthBarChart Grid.Row="2" x:Name="FocalLengthBarChart" />
+        <Grid Grid.Row="2">
+            <TabControl>
+                <TabItem Header="Focal Length" >
+                    <uc:FocalLengthBarChart  x:Name="FocalLengthBarChart" />
+                </TabItem>
+                <TabItem Header="Shutter Speed" />
+                <TabItem Header="Aperture" />
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>

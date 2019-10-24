@@ -19,9 +19,13 @@ namespace ShutterVerse
         public MainWindow()
         {
             InitializeComponent();
+            DataLoaded = false;
+            DataContext = this;
         }
 
         public ImageWithExif selectedImage { get; set; }
+        public bool DataLoaded { get; set; }
+        public bool NotLoaded { get => !DataLoaded; set => DataLoaded = !value; }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -63,6 +67,7 @@ namespace ShutterVerse
 
 
                 dataGrid1.ItemsSource = imageList;
+                DataLoaded = true;
             }
         }
 
