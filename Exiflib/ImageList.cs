@@ -10,7 +10,7 @@ namespace ExifLib
         private string[] _fileTypes;
         public List<ImageWithExif> list;
 
-        public IOrderedEnumerable<string> FocalLengths => FocalLengthsDouble.Select(d => d.ToString("0.00")).OrderBy(a=>1);
+        public IOrderedEnumerable<string> FocalLengths => FocalLengthsDouble.Select(d => d.ToString("0")).OrderBy(a=>1);
 
         public IOrderedEnumerable<double> FocalLengthsDouble => list.GroupBy(l => l.FocalLengthDouble)
                                   .Select(g => g.Key).OrderBy(g => g);
