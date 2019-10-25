@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ExifLib
 {
@@ -10,7 +11,7 @@ namespace ExifLib
         private string[] _fileTypes;
         public List<ImageWithExif> list;
 
-        public IOrderedEnumerable<string> FocalLengths => FocalLengthsDouble.Select(d => d.ToString("0")).OrderBy(a=>1);
+        public IOrderedEnumerable<string> FocalLengths => FocalLengthsDouble.Select(d => d.ToString("0")).OrderBy(a => 1);
 
         public IOrderedEnumerable<double> FocalLengthsDouble => list.GroupBy(l => l.FocalLengthDouble)
                                   .Select(g => g.Key).OrderBy(g => g);
@@ -26,23 +27,26 @@ namespace ExifLib
             _fileTypes = new string[] { "*.jpg", "*.cr2" };
         }
 
-        public void Load()
+        public async Task Load()
 
         {
-            foreach (var type in _fileTypes)
+            await Task.Run(() =>
             {
-                foreach (var file in Directory.EnumerateFiles(_path, type, SearchOption.AllDirectories))
+                foreach (var type in _fileTypes)
                 {
-                    try
+                    foreach (var file in Directory.EnumerateFiles(_path, type, SearchOption.AllDirectories))
                     {
-                        list.Add(new ImageWithExif(file));
-                    }
-                    catch
-                    {
+                        try
+                        {
+                            list.Add(new ImageWithExif(file));
+                        }
+                        catch
+                        {
 
+                        }
                     }
                 }
-            }         
+            });
         }
     }
 }

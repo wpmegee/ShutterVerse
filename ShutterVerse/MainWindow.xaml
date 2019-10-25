@@ -4,6 +4,7 @@
         x:Class="ShutterVerse.MainWindow"
         xmlns:uc="clr-namespace:ShutterVerse.Controls"
         xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         Title="ShutterVerse">
     <Window.Resources>
         <ResourceDictionary>
@@ -21,9 +22,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="48"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="1" x:Name="directoryLabel" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top"/>
             <Button Grid.Column="0" Content="Choose a folder" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" />
+            <fa:ImageAwesome Grid.Column="2" Name="Spinner" Visibility="Hidden" Icon="Refresh" Spin="True" Height="48" Width="48" />
         </Grid>
         <Grid Grid.Row="1">
             

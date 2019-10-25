@@ -29,8 +29,9 @@ namespace ShutterVerse
         public bool NotLoaded { get => !DataLoaded; set => DataLoaded = !value; }
         public ImageList list { get; set; }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
+
             var dialog = new FolderBrowserDialog();
             DialogResult result = dialog.ShowDialog();
 
@@ -43,9 +44,12 @@ namespace ShutterVerse
 
             if (path != String.Empty)
             {
+                Spinner.Visibility = Visibility.Visible;
+
                 directoryLabel.Content = path;
                 list = new ImageList(path);
-                list.Load();
+
+                await list.Load();
 
                 FocalLengthBarChart.FocalLengthLabels = list.FocalLengths;
                 FocalLengthBarChart.FocalLengthValues = list.FocalLengthCounts;
@@ -53,6 +57,8 @@ namespace ShutterVerse
                 dataGrid1.ItemsSource = list.list;
                 DataLoaded = true;
             }
+
+            Spinner.Visibility = Visibility.Hidden;
         }
 
         private void DataGrid1_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
