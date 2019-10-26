@@ -5,48 +5,51 @@ using LiveCharts.Wpf;
 using LiveCharts;
 using System.Linq;
 using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace ShutterVerse.Controls
 {
     /// <summary>
-    /// Interaction logic for FocalLengthBarChart.xaml
+    /// Interaction logic for ShutterSpeedBarChart.xaml
     /// </summary>
-    public partial class FocalLengthBarChart : UserControl
+    public partial class ShutterSpeedBarChart : UserControl
     {
-        public FocalLengthBarChart()
+        public ShutterSpeedBarChart()
         {
             InitializeComponent();
             SeriesCollection = new SeriesCollection();
             Formatter = value => value.ToString("N");
+            DataContext = this;
         }
 
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<int, string> Formatter { get; set; }
 
-        private IOrderedEnumerable<string> _FocalLengthLabels;
-        public IOrderedEnumerable<string> FocalLengthLabels
+        private IOrderedEnumerable<string> _ShutterSpeedLabels;
+        public IOrderedEnumerable<string> ShutterSpeedLabels
         {
-            get => _FocalLengthLabels;
+            get => _ShutterSpeedLabels;
             set
             {
-                _FocalLengthLabels = value;
+                _ShutterSpeedLabels = value;
                 Labels = value.ToArray();
                 DataContext = this;
             }
         }
 
-        private IEnumerable<int> _FocalLengthValues;
-        public IEnumerable<int> FocalLengthValues
+        private IEnumerable<int> _ShutterSpeedValues;
+        public IEnumerable<int> ShutterSpeedValues
         {
-            get => _FocalLengthValues;
+            get => _ShutterSpeedValues;
             set
             {
-                _FocalLengthValues = value;
+                _ShutterSpeedValues = value;
                 SeriesCollection.Add(new ColumnSeries
                 {
                     Title = "Uses",
-                    Values = new ChartValues<int>(value)
+                    Values = new ChartValues<int>(value),
+                    //Foreground = new SolidColorBrush(Colors.Red)
                 });
                 DataContext = this;
             }

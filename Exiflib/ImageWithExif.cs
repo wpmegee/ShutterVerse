@@ -15,6 +15,8 @@ namespace ExifLib
 
         public string ShutterSpeed { get; set; }
 
+        public double ShutterSpeedDouble { get; set; }
+
         public string FocalLength { get; set; }
 
         public double FocalLengthDouble { get; set; }
@@ -58,6 +60,7 @@ namespace ExifLib
             {
                 Aperture = subIfdDirectory.GetDescription(ExifDirectoryBase.TagAperture);
                 ShutterSpeed = subIfdDirectory.GetDescription(ExifDirectoryBase.TagExposureTime);
+                ShutterSpeedDouble = subIfdDirectory.GetDouble(ExifDirectoryBase.TagExposureTime);
                 FocalLength = subIfdDirectory.GetDescription(ExifDirectoryBase.TagFocalLength);
                 FocalLengthDouble = subIfdDirectory.GetDouble(ExifDirectoryBase.TagFocalLength);
                 Iso = subIfdDirectory.GetDescription(ExifDirectoryBase.TagIsoEquivalent);

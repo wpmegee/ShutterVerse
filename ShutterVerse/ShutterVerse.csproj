@@ -80,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\ShutterSpeedBarChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\FocalLengthBarChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ShutterSpeedBarChart.xaml.cs">
+      <DependentUpon>ShutterSpeedBarChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\FocalLengthBarChart.xaml.cs">
       <DependentUpon>FocalLengthBarChart.xaml</DependentUpon>

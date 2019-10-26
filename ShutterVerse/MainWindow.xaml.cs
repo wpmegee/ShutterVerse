@@ -54,6 +54,9 @@ namespace ShutterVerse
                 FocalLengthBarChart.FocalLengthLabels = list.FocalLengths;
                 FocalLengthBarChart.FocalLengthValues = list.FocalLengthCounts;
 
+                ShutterSpeedBarChart.ShutterSpeedLabels = list.ShutterSpeeds;
+                ShutterSpeedBarChart.ShutterSpeedValues = list.ShutterSpeedCounts;
+
                 dataGrid1.ItemsSource = list.list;
                 DataLoaded = true;
             }

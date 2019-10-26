@@ -13,12 +13,19 @@ namespace ExifLib
 
         public IOrderedEnumerable<string> FocalLengths => FocalLengthsDouble.Select(d => d.ToString("0")).OrderBy(a => 1);
 
-        public IOrderedEnumerable<double> FocalLengthsDouble => list.GroupBy(l => l.FocalLengthDouble)
+        private IOrderedEnumerable<double> FocalLengthsDouble => list.GroupBy(l => l.FocalLengthDouble)
                                   .Select(g => g.Key).OrderBy(g => g);
 
         public IEnumerable<int> FocalLengthCounts => list.GroupBy(l => l.FocalLengthDouble)
                                   .Select(g => g.Select(l => l.FocalLengthDouble).Count());
 
+        public IOrderedEnumerable<string> ShutterSpeeds => ShutterSpeedsDouble.Select(d => d).OrderBy(a => 1);
+
+        private IOrderedEnumerable<string> ShutterSpeedsDouble => list.GroupBy(l => l.ShutterSpeed)
+            .Select(g => g.Key).OrderBy(g => g);
+
+        public IEnumerable<int> ShutterSpeedCounts => list.GroupBy(l => l.ShutterSpeedDouble)
+                                  .Select(g => g.Select(l => l.ShutterSpeedDouble).Count());
 
         public ImageList(string path)
         {
