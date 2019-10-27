@@ -11,7 +11,7 @@
             <BooleanToVisibilityConverter x:Key="BoolToVis" />
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -29,16 +29,28 @@
             <fa:ImageAwesome Grid.Column="2" Name="Spinner" Visibility="Hidden" Icon="Refresh" Spin="True" Height="48" Width="48" />
         </Grid>
         <Grid Grid.Row="1">
-            
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width=".7*" />
-                    <ColumnDefinition Width="5" />
-                    <ColumnDefinition Width=".3*" />
-                </Grid.ColumnDefinitions>
-            <DataGrid Grid.Column="0" x:Name="dataGrid1" AutoGenerateColumns="True" SelectedItem="{Binding Path=selectedImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".7*" />
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width=".3*" />
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" x:Name="dataGrid1" AutoGenerateColumns="False" SelectedItem="{Binding Path=selectedImage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           EnableColumnVirtualization="True" EnableRowVirtualization="True" SelectionChanged="DataGrid1_SelectionChanged">
-                </DataGrid>
-                <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Filename" Binding="{Binding FileName}" />
+                    <DataGridTextColumn Header="Aperture" Binding="{Binding Aperture}" />
+                    <DataGridTextColumn Header="Shutter Speed" Binding="{Binding ShutterSpeed}" />
+                    <DataGridTextColumn Header="Focal Length" Binding="{Binding FocalLength}" />
+                    <DataGridTextColumn Header="ISO" Binding="{Binding Iso}" />
+                    <DataGridTextColumn Header="Exosure Program" Binding="{Binding ExposureProgram}" />
+                    <DataGridTextColumn Header="Metering Mode" Binding="{Binding MeteringMode}" />
+                    <DataGridTextColumn Header="Lens" Binding="{Binding Lens}" />
+                    <DataGridTextColumn Header="Camera Make" Binding="{Binding CameraMake}" />
+                    <DataGridTextColumn Header="Camera Model" Binding="{Binding CameraModel}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
             <Image HorizontalAlignment="Left" VerticalAlignment="Top" Name="ImagePreview" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="2">
