@@ -49,7 +49,7 @@ namespace ShutterVerse.Controls
                 {
                     Title = "Uses",
                     Values = new ChartValues<int>(value),
-                    //Foreground = new SolidColorBrush(Colors.Red)
+                    Fill = new SolidColorBrush(Colors.Red)
                 });
                 DataContext = this;
             }
