@@ -9,25 +9,29 @@ using System.Linq;
 
 using ExifLib;
 using ImageList = ExifLib.ImageList;
+using MahApps.Metro;
 
 namespace ShutterVerse
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
             InitializeComponent();
             DataLoaded = false;
             DataContext = this;
+            _darkMode = false;
         }
 
         public ImageWithExif selectedImage { get; set; }
         public bool DataLoaded { get; set; }
         public bool NotLoaded { get => !DataLoaded; set => DataLoaded = !value; }
         public ImageList list { get; set; }
+
+        private bool _darkMode;
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -74,6 +78,21 @@ namespace ShutterVerse
                     ImagePreview.Source = new BitmapImage(new Uri(image.FileName));
                 }
             }
+        }
+
+        private void DarkModeToggle_Click(object sender, RoutedEventArgs e)
+        {
+            if (_darkMode)
+            {
+                ThemeManager.ChangeAppTheme(System.Windows.Application.Current, "BaseLight");
+                _darkMode = false;
+            }
+            else
+            {
+                ThemeManager.ChangeAppTheme(System.Windows.Application.Current, "BaseDark");
+                _darkMode = true;
+            }
+           
         }
     }
 }

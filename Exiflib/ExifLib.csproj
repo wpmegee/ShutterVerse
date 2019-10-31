@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="ImageList.cs" />
     <Compile Include="ImageWithExif.cs" />
+    <Compile Include="MyDirectory.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

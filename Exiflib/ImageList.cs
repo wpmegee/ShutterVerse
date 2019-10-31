@@ -39,18 +39,16 @@ namespace ExifLib
         {
             await Task.Run(() =>
             {
-                foreach (var type in _fileTypes)
-                {
-                    foreach (var file in Directory.EnumerateFiles(_path, type, SearchOption.AllDirectories))
-                    {
-                        try
-                        {
-                            list.Add(new ImageWithExif(file));
-                        }
-                        catch
-                        {
 
-                        }
+                foreach (var file in MyDirectory.GetFiles(_path, _fileTypes, SearchOption.AllDirectories))
+                {
+                    try
+                    {
+                        list.Add(new ImageWithExif(file));
+                    }
+                    catch
+                    {
+
                     }
                 }
             });

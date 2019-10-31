@@ -37,6 +37,8 @@ namespace ExifLib
 
         public string CameraModel { get; set; }
 
+        public string MakerNote { get; set; }
+
         public string DateTaken
         {
             get; set;
@@ -69,7 +71,8 @@ namespace ExifLib
                 _lensModel = subIfdDirectory.GetDescription(ExifDirectoryBase.TagLensModel);
                 ExposureProgram = subIfdDirectory.GetDescription(ExifDirectoryBase.TagExposureProgram);
                 MeteringMode = subIfdDirectory.GetDescription(ExifDirectoryBase.TagMeteringMode);
-                DateTaken = subIfdDirectory.GetDescription(ExifDirectoryBase.TagDateTimeDigitized);
+                DateTaken = subIfdDirectory.GetDescription(ExifDirectoryBase.TagDateTime);
+                MakerNote = subIfdDirectory.GetDescription(ExifDirectoryBase.TagMakernote);
             }
 
         }
