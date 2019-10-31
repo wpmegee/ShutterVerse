@@ -43,6 +43,7 @@ namespace ShutterVerse.Controls
             set
             {
                 _FocalLengthValues = value;
+                SeriesCollection.Clear();
                 SeriesCollection.Add(new ColumnSeries
                 {
                     Title = "Uses",

@@ -45,6 +45,7 @@ namespace ShutterVerse.Controls
             set
             {
                 _ShutterSpeedValues = value;
+                SeriesCollection.Clear();
                 SeriesCollection.Add(new ColumnSeries
                 {
                     Title = "Uses",
