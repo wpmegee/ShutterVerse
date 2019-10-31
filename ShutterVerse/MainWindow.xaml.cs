@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using System.IO;
 
 using System.Windows.Forms;
-using System.Linq;
 
 using ExifLib;
 using ImageList = ExifLib.ImageList;
@@ -39,14 +36,14 @@ namespace ShutterVerse
             var dialog = new FolderBrowserDialog();
             DialogResult result = dialog.ShowDialog();
 
-            String path = String.Empty;
+            var path = string.Empty;
 
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 path = dialog.SelectedPath;
             }
 
-            if (path != String.Empty)
+            if (path != string.Empty)
             {
                 Spinner.Visibility = Visibility.Visible;
 
