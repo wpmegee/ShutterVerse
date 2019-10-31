@@ -58,6 +58,9 @@ namespace ShutterVerse
                 ShutterSpeedBarChart.ShutterSpeedLabels = list.ShutterSpeeds;
                 ShutterSpeedBarChart.ShutterSpeedValues = list.ShutterSpeedCounts;
 
+                ApertureBarChart.ApertureLabels = list.Apertures;
+                ApertureBarChart.ApertureValues = list.Aperturecounts;
+
                 dataGrid1.ItemsSource = list.list;
                 DataLoaded = true;
             }

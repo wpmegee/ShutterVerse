@@ -42,6 +42,13 @@ namespace ExifLib
         public IEnumerable<int> ShutterSpeedCounts => list.GroupBy(l => l.ShutterSpeedDouble)
                                   .Select(g => g.Select(l => l.ShutterSpeedDouble).Count());
 
+
+        public IOrderedEnumerable<string> Apertures => list.GroupBy(l => l.Aperture)
+            .Select(g => g.Key).OrderBy(g => g);
+
+        public IEnumerable<int> Aperturecounts => list.GroupBy(l => l.Aperture)
+                                  .Select(g => g.Select(l => l.Aperture).Count());
+
         public ImageList(string path)
         {
             _path = path;

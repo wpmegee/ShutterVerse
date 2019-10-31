@@ -74,7 +74,9 @@
                 <TabItem Header="Shutter Speed">
                     <uc:ShutterSpeedBarChart  x:Name="ShutterSpeedBarChart" />
                 </TabItem>
-                <TabItem Header="Aperture" />
+                <TabItem Header="Aperture" >
+                    <uc:ApertureBarChart  x:Name="ApertureBarChart" />
+                </TabItem>
             </TabControl>
         </Grid>
     </Grid>

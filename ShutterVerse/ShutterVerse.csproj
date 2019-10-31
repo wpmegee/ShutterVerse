@@ -89,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\ApertureBarChart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ShutterSpeedBarChart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -104,6 +108,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\ApertureBarChart.xaml.cs">
+      <DependentUpon>ApertureBarChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\ShutterSpeedBarChart.xaml.cs">
       <DependentUpon>ShutterSpeedBarChart.xaml</DependentUpon>
