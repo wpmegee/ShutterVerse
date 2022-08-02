@@ -1,7 +1,9 @@
-﻿using MetadataExtractor;
+﻿
+using MetadataExtractor;
 using MetadataExtractor.Formats.Exif;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -54,7 +56,7 @@ namespace ExifLib
             getTags(directories);
         }
 
-        private void getTags(IEnumerable<Directory> directories)
+        private void getTags(IEnumerable<MetadataExtractor.Directory> directories)
         {
             var subIfdDirectory = directories.OfType<ExifSubIfdDirectory>().FirstOrDefault();
 

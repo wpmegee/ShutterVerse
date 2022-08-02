@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -68,9 +69,9 @@ namespace ExifLib
                     {
                         list.Add(new ImageWithExif(file));
                     }
-                    catch
+                    catch (Exception ex)
                     {
-
+                        var foo = "foo";
                     }
                 }
             });

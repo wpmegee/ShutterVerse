@@ -5,7 +5,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Forms;
 
 using ExifLib;
-using ImageList = ExifLib.ImageList;
 using MahApps.Metro;
 
 namespace ShutterVerse
@@ -26,7 +25,7 @@ namespace ShutterVerse
         public ImageWithExif selectedImage { get; set; }
         public bool DataLoaded { get; set; }
         public bool NotLoaded { get => !DataLoaded; set => DataLoaded = !value; }
-        public ImageList list { get; set; }
+        public ExifLib.ImageList list { get; set; }
 
         private bool _darkMode;
 
@@ -48,7 +47,7 @@ namespace ShutterVerse
                 Spinner.Visibility = Visibility.Visible;
 
                 directoryLabel.Content = path;
-                list = new ImageList(path);
+                list = new ExifLib.ImageList(path);
 
                 await list.Load();
 
