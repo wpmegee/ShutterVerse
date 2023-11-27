@@ -3,9 +3,7 @@ using MetadataExtractor;
 using MetadataExtractor.Formats.Exif;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace ExifLib
 {
@@ -47,16 +45,16 @@ namespace ExifLib
         }
        
 
-        public ImageWithExif(String FileName)
+        public ImageWithExif(string FileName)
         {
             this.FileName = FileName;
 
             var directories = ImageMetadataReader.ReadMetadata(this.FileName);
 
-            getTags(directories);
+            GetTags(directories);
         }
 
-        private void getTags(IEnumerable<MetadataExtractor.Directory> directories)
+        private void GetTags(IEnumerable<MetadataExtractor.Directory> directories)
         {
             var subIfdDirectory = directories.OfType<ExifSubIfdDirectory>().FirstOrDefault();
 
