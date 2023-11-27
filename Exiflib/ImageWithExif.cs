@@ -68,7 +68,6 @@ namespace ExifLib
                 FocalLength = subIfdDirectory.GetDescription(ExifDirectoryBase.TagFocalLength);
                 FocalLengthDouble = subIfdDirectory.GetDouble(ExifDirectoryBase.TagFocalLength);
                 Iso = subIfdDirectory.GetDescription(ExifDirectoryBase.TagIsoEquivalent);
-                CameraMake = subIfdDirectory.GetDescription(ExifDirectoryBase.TagMake);
                 _lensMake = subIfdDirectory.GetDescription(ExifDirectoryBase.TagLensMake);
                 _lensModel = subIfdDirectory.GetDescription(ExifDirectoryBase.TagLensModel);
                 ExposureProgram = subIfdDirectory.GetDescription(ExifDirectoryBase.TagExposureProgram);
@@ -77,6 +76,14 @@ namespace ExifLib
                 MakerNote = subIfdDirectory.GetDescription(ExifDirectoryBase.TagMakernote);
             }
 
+            // todo search for directories
+            var directory = directories.OfType<ExifIfd0Directory>().FirstOrDefault();
+
+            if (directory != null)
+            {
+                CameraMake = directory.GetDescription(ExifDirectoryBase.TagMake);
+                CameraModel = directory.GetDescription(ExifDirectoryBase.TagModel);
+            }
         }
     }
 }
