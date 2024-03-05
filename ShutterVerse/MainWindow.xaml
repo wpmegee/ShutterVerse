@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="ShutterVerse.MainWindow"
         xmlns:uc="clr-namespace:ShutterVerse.Controls"
-        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="ShutterVerse">
